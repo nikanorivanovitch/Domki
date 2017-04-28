@@ -33,7 +33,7 @@ def decoupage(a):
         a=a+piece(a)
         #ici k sert à compter le nombre de pièces qui ont été crées
         k=k+1
-        if a>(6/10)*hauteur*largeur:
+        if a>(5/10)*hauteur*largeur:
             #si l'aire de toutes les pièces est supérieure à plus de 60% de l'aire totale de la maison, on arrête donc on casse la boucle en donnant n=1
             n=1
     #on donne les résultats de la fonction
@@ -136,18 +136,25 @@ def put_first():
     pos_rec.append(liste_t_rec[0])
     pos_rec.append(liste_t_rec[1])
 
+#fonction chevauchement
+def chev(a,b,c,d):
+    if a<b<=c<d or b<a<=c<d or a<b<=d<c or b<a<=d<c:
+        return False
+    elif c<d<=a<b or d<c<=a<b or c<d<=b<a or d<c<=b<a:
+        return False
+    else:
+        return True
+
 #fonction importante /!\ qui regarde si deux pièces sont superposée, cette fonction gère le placement des pièces
 def check(x,y,a):
     c=0
     for z in range(4,len(pos_rec),4):
-        if not dans(pos_rec[z],x,pos_rec[z+2]) or not dans(pos_rec[z+1],y,pos_rec[z+3]):
-            c=c
-        else:
+        if chev(x,x+liste_t_rec[a],pos_rec[z],pos_rec[z+2]) and chev(y,y+liste_t_rec[a+1],pos_rec[z+1],pos_rec[z+3]):
             c=c+1
-        if dans(pos_rec[0],x+liste_t_rec[a],pos_rec[2]) and dans(pos_rec[1],y+liste_t_rec[a+1],pos_rec[3]):
-            c=c
-        else:
+        if not dans(pos_rec[0],x+liste_t_rec[a],pos_rec[2]) or not dans(pos_rec[1],y+liste_t_rec[a+1],pos_rec[3]):
             c=c+1
+        else:
+            c=c
     if not c:
         return True
     if c:
@@ -182,7 +189,7 @@ def main():
     
                     
 hauteur=15
-largeur=10
+largeur=15
 kp=40
 pos_rec=[]
 liste=[]
@@ -193,8 +200,6 @@ pos_rec.append(0)
 pos_rec.append(0)
 pos_rec.append(largeur)
 pos_rec.append(hauteur)
-for x in range(4):
-    pos_rec.append(0)
 pieces=5
 a=0
 fenetre=Tk()
