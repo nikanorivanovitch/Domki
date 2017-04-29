@@ -162,6 +162,7 @@ def check(x,y,a):
         
 #fonction importante /!\ elle place les pièces (à expliquer oralement parceque trop compliquée)
 def put(a):
+    #de là...
     x=-1
     y=0
     while y!=11:
@@ -169,16 +170,24 @@ def put(a):
         if x==11:
             y=y+1
             x=0
+            #à là, c'est juste une boucle pour x et y prenant toutes les valeurs de 0 à 10, on peut peut-être remplacer par un for
         if check(x,y,a):
+            #if unefonction() ça veut dire si la fonction "unefonction()" te renvoie une valeur autre que zéro alors tu fais ça
             pos_rec.append(x)
             pos_rec.append(y)
             pos_rec.append(x+liste_t_rec[a])
             pos_rec.append(y+liste_t_rec[a+1])
             print("la pièce {} a été placée aux positions {} {}".format(a/2,x,y))
             return True
+            #ici le return True fait en sorte que la fonction se termine, toute fonction se termine par un "return [gniagnia]"
         else:
+            #ici le True c'est juste pour meubler, c'est pour qu'il fasse rien et passe son tour
             True
+    #si on arrive jusqu'à cette ligne là ça signifie que la boucle est terminée et qu'on n'a pas pu renvoyer "True" et marquer la 
+    #fin de la fonction et donc par opposition à l'évènement "on a réussi à placer la pièce"= return True on a l'évènement return False
+    #qui signifie "Il n'y a pas de possibilité de placer la pièce"
     return False
+    
             
 #fontion principale du programme
 def main():
