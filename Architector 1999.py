@@ -43,10 +43,13 @@ def check() :
     liste_definitive.append(0)
     liste_definitive.append(liste_rangée[0])
     liste_definitive.append(liste_rangée[1])
+    print("+ 1 pièce")
     #puis pour le nombre de pieces qu'il reste
     for h in range (2,len(liste_rangée),2):
+        km=0
         for x in range (largeur) :
             for y in range (longueur) :
+                km=km+1
                 c=0
                 for z in range(4,len(liste_definitive),4):
                     if chev(x,x+liste_rangée[h],liste_definitive[z],liste_definitive[z+2]) and chev(y,y+liste_rangée[h+1],liste_definitive[z+1],liste_definitive[z+3]):
@@ -55,16 +58,19 @@ def check() :
                         c=c+1
                     else:
                         c=c
-                #si c n'est pas égal à 0, il n'y a pas d'erreur
+                #si c est égal à 0 alors il peut être placé à ces coordonnés (x,y)
                 if not c:
                     liste_definitive.append(x)
                     liste_definitive.append(y)
                     liste_definitive.append(x+liste_rangée[h])
                     liste_definitive.append(y+liste_rangée[h+1])
                     print("+ 1 pièce")
-                #si c est égal à 0, il y a une erreur
+                    km=1
+                #si c est différent de 0 alors il ne peut être placé à ces coordonnés (x,y)
                 if c:
                     True
+        if not km:
+            print("la pièce numéro {} n'a pas pu être placée".format(int(h/2)))
     print(liste_definitive)
     
 def chev(a,b,c,d):
@@ -88,17 +94,16 @@ def mise_aux_dimensions():
 
 def jonction():
     c=0
+    p=0
     for i in range (6,len(liste_definitive),4):
         if liste_definitive[i]>c :
             c=liste_definitive[i]
-            k=i
-    liste_definitive[k]=liste_definitive[2]
-    c=0
-    for i in range (7,len(liste_definitive),4):
-        if liste_definitive[i]>c :
-            c=liste_definitive[i]
-            k=i
-    liste_definitive[k]=liste_definitive[3]
+            a=i
+        if liste_definitive[i+1]>p:
+            p=liste_definitive[i+1]
+            b=i+1
+    liste_definitive[a]=liste_definitive[2]
+    liste_definitive[b]=liste_definitive[3]
     print(liste_definitive)
 
 def placement():
@@ -127,3 +132,4 @@ check()
 mise_aux_dimensions()
 jonction()
 placement()
+
