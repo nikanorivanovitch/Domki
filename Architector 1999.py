@@ -107,8 +107,10 @@ def jonction():
     print(liste_definitive)
 
 def placement():
+    x=0
     for i in range(0,len(liste_definitive),4):
-        canvas.create_rectangle(liste_definitive[i],liste_definitive[i+1],liste_definitive[i+2],liste_definitive[i+3])
+        canvas.create_rectangle(liste_definitive[i],liste_definitive[i+1],liste_definitive[i+2],liste_definitive[i+3],fill=color[x])
+        x=x+1
     
 #Valeurs de base
 longueur=10
@@ -123,6 +125,7 @@ canvas.grid(column=0, row=1, ipadx=20, ipady=20)
 liste_bazar=[]
 liste_rangée=[]
 liste_definitive=[]
+color=["#FEEAA5","#F5FEA5","#C3FEA5","#A5FEAB","#A5FEDB","#A5FEFE","#A5D2FE","#A8A5FE","#D8A5FE","#FEA5FB"]
 
 liste_definitive.extend([0,0,largeur, longueur])
 
@@ -132,4 +135,5 @@ check()
 mise_aux_dimensions()
 jonction()
 placement()
+
 
