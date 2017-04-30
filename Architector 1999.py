@@ -86,6 +86,21 @@ def mise_aux_dimensions():
         liste_definitive[i] = liste_definitive[i]*echelle
     print(liste_definitive)
 
+def jonction():
+    c=0
+    for i in range (6,len(liste_definitive),4):
+        if liste_definitive[i]>c :
+            c=liste_definitive[i]
+            k=i
+    liste_definitive[k]=liste_definitive[2]
+    c=0
+    for i in range (7,len(liste_definitive),4):
+        if liste_definitive[i]>c :
+            c=liste_definitive[i]
+            k=i
+    liste_definitive[k]=liste_definitive[3]
+    print(liste_definitive)
+
 def placement():
     for i in range(0,len(liste_definitive),4):
         canvas.create_rectangle(liste_definitive[i],liste_definitive[i+1],liste_definitive[i+2],liste_definitive[i+3])
@@ -110,4 +125,5 @@ pieces()
 tri()
 check()
 mise_aux_dimensions()
+jonction()
 placement()
