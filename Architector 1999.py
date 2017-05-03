@@ -143,6 +143,15 @@ def couloir():
         liste_definitive.append(x2)
         liste_definitive.append(y2)
 
+def couleur():
+    comp_color=["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"]
+    for x in range(50):
+        k="#"
+        for y in range(6):
+            a=random.randint(0,15)
+            k=k+comp_color[a]
+        color.append(k)
+
 def jonction():
     c=0
     p=0
@@ -164,7 +173,7 @@ def jonction_():
         if liste_definitive[i] > n :
             liste_definitive[i]=liste_definitive[2]
         if liste_definitive[i+1] > m :
-liste_definitive[i+1]=liste_definitive[3]
+            liste_definitive[i+1]=liste_definitive[3]
         
 #$# Fonction finale qui crée les pièces #$#
 def dessin():
@@ -186,16 +195,16 @@ canvas.grid(column=0, row=1, ipadx=20, ipady=20)
 liste_bazar=[]
 liste_rangée=[]
 liste_definitive=[]
-color=["#FEEAA5","#F5FEA5","#C3FEA5","#A5FEAB","#A5FEDB","#A5FEFE","#A5D2FE","#A8A5FE","#D8A5FE","#FEA5FB"]
+color=[]
 
 liste_definitive.extend([0,0,largeur, longueur])
 
+couleur()
 pieces()
 tri()
 placement()
 mise_aux_dimensions()
 couloir()
 dessin()
-
 
 
