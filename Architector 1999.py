@@ -106,6 +106,26 @@ def jonction():
     liste_definitive[b]=liste_definitive[3]
     print(liste_definitive)
 
+def jonction_():
+    n = (((largeur*echelle)/4)*3)
+    m = (((longueur*echelle)/4)*3)
+    for i in range (6,len(liste_definitive),4):
+        if liste_definitive[i] > n :
+            liste_definitive[i]=liste_definitive[2]
+        if liste_definitive[i+1] > m :
+            liste_definitive[i+1]=liste_definitive[3]
+
+def couloir():
+    if (len(liste_definitive)/4)-1 > 4 :
+        x1 = liste_definitive[4]
+        y1 = liste_definitive[5]-(1*echelle)
+        x2 = liste_definitive[6]
+        y2 = liste_definitive[7]-(1*echelle)
+    liste_definitive.append(x1)
+    liste_definitive.append(y1)
+    liste_definitive.append(x2)
+    liste_definitive.append(y2)
+
 def placement():
     x=0
     for i in range(0,len(liste_definitive),4):
@@ -133,7 +153,9 @@ pieces()
 tri()
 check()
 mise_aux_dimensions()
-jonction()
+jonction_()
+couloir()
 placement()
+
 
 
