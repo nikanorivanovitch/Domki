@@ -8,14 +8,14 @@ from tkinter import *
 def pieces_():
     i = 0
     aire_totale=longueur*largeur
-    while i != nb_pieces-1:
+    while i != nb_pieces:
         x = random.randint(int(largeur/5),int(largeur/2))
         y = random.randint(int(longueur/5),int(longueur/2))
         aire = x*y
         if aire_totale - aire <= largeur*longueur/25 :
             print("$: Nous avons placé seulement placé {} pièces car il n'y a pas assez de place".format(i))
             break
-        if 2 >= x-y >=-2 and aire_totale - aire >= 0 :
+        if 2 >= x-y >=-2 and aire_totale - aire >= largeur*longueur/25 :
             aire_totale = aire_totale - aire
             i = i+1
             liste_bazar.append(x)
