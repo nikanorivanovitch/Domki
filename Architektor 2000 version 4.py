@@ -65,8 +65,8 @@ def placement() :
 
 def check_impair(h):
     #ici on part du coin gauche supérieur
-    for y in range (longueur) :
-        for x in range (largeur) :
+    for x in range (largeur) :
+        for y in range (longueur) :
             c=0
             for z in range(4,len(liste_definitive),4):
                 if chev(x,x+liste_rangée[h],liste_definitive[z],liste_definitive[z+2]) and chev(y,y+liste_rangée[h+1],liste_definitive[z+1],liste_definitive[z+3]):
@@ -136,6 +136,29 @@ def couleur():
             a=random.randint(0,15)
             k=k+comp_color[a]
         color.append(k)
+
+def jonction():
+    c=0
+    p=0
+    for i in range (6,len(liste_definitive),4):
+        if liste_definitive[i]>c :
+            c=liste_definitive[i]
+            a=i
+        if liste_definitive[i+1]>p:
+            p=liste_definitive[i+1]
+            b=i+1
+    liste_definitive[a]=liste_definitive[2]
+    liste_definitive[b]=liste_definitive[3]
+    print(liste_definitive)
+
+def jonction_():
+    n = (((largeur*echelle)/4)*3)
+    m = (((longueur*echelle)/4)*3)
+    for i in range (6,len(liste_definitive),4):
+        if liste_definitive[i] > n :
+            liste_definitive[i]=liste_definitive[2]
+        if liste_definitive[i+1] > m :
+            liste_definitive[i+1]=liste_definitive[3]
 
 #------------------------------
 #--------Premère partie--------
@@ -219,6 +242,6 @@ couleur()
 pieces_()
 tri()
 placement()
+jonction_()
 mise_aux_dimensions()
 dessin()
-
