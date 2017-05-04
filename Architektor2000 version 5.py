@@ -8,14 +8,14 @@ from tkinter import *
 def pieces_():
     i = 0
     aire_totale=longueur*largeur
-    while i != nb_pieces:
+    while i != nb_pieces-1:
         x = random.randint(int(largeur/5),int(largeur/2))
         y = random.randint(int(longueur/5),int(longueur/2))
         aire = x*y
         if aire_totale - aire <= largeur*longueur/25 :
             print("$: Nous avons placé seulement placé {} pièces car il n'y a pas assez de place".format(i))
             break
-        if 2 >= x-y >=-2 and aire_totale - aire >= largeur*longueur/25 :
+        if 2 >= x-y >=-2 and aire_totale - aire >= 0 :
             aire_totale = aire_totale - aire
             i = i+1
             liste_bazar.append(x)
@@ -149,10 +149,16 @@ def couleur():
 def jonction():
     for i in range(4,len(liste_definitive),4):
         c=0
+        cx=0
+        cy=0
         for x in range(4,len(liste_definitive),4):
             if x!=i:
                 if chev(liste_definitive[i],liste_definitive[2],liste_definitive[x],liste_definitive[x+2]) and chev(liste_definitive[i+1],liste_definitive[3],liste_definitive[x+1],liste_definitive[x+3]):
                     c=c+1
+                if abs(liste_definitive[i+2]-liste_definitive[2])<=2:
+                    liste_definitive[i+2]=liste_definitive[2]
+                if abs(liste_definitive[i+3]-liste_definitive[3])<=2:
+                    liste_definitive[i+3]=liste_definitive[3]
             if x==i:
                 True
         if not c:
