@@ -152,8 +152,10 @@ def couloir():
 
 def dessin():
     x=0
+    y=-1
     for i in range(0,len(liste_definitive),4):
-        canvas.create_rectangle(10+liste_definitive[i],10+liste_definitive[i+1],10+liste_definitive[i+2],10+liste_definitive[i+3], fill=color[x])
+        canvas.create_rectangle(10+liste_definitive[i],10+liste_definitive[i+1],10+liste_definitive[i+2],10+liste_definitive[i+3],fill=color[x])
+        y=y+1
         canvas.create_text(10+int((liste_definitive[i+2]+liste_definitive[i])/2),10+int((liste_definitive[i+1]+liste_definitive[i+3])/2), text=nom[x])
         x=x+1 # On change l'indice de la couleur
         # On ajoute 10 à chaques dimensions pour qu'on puisse apercevoir une marge autour de la maison, le fill=color[x] permet de colorier la pièce
@@ -181,6 +183,8 @@ def couleur():
 def jonction():
     for i in range(4,len(liste_definitive),4):
         c=0 # c est encore ici un compteur d'erreur
+        cx=0
+        cy=0
         for x in range(4,len(liste_definitive),4): # Les deux boucles permettent de traiter chaque pièce placée avec une autre pièce placée
             if x!=i: 
                 if chev(liste_definitive[i],liste_definitive[2],liste_definitive[x],liste_definitive[x+2]) and chev(liste_definitive[i+1],liste_definitive[3],liste_definitive[x+1],liste_definitive[x+3]):
@@ -189,11 +193,32 @@ def jonction():
                     liste_definitive[i+2]=liste_definitive[2]         # alors on agrandit la pièce pour qu'elle touche le mur extérieur
                 if abs(liste_definitive[i+3]-liste_definitive[3])<=2:
                     liste_definitive[i+3]=liste_definitive[3]
+                if dans(liste_definitive[i],((liste_definitive[x]+liste_definitive[x+2])/2),liste_definitive[2]) and dans(liste_definitive[i+1],((liste_definitive[x+1]+liste_definitive[x+3])/2),liste_definitive[3]):
+                    cx=cx+1
+                    cy=cy+1
+                if not dans(liste_definitive[i+1],((liste_definitive[x+1]+liste_definitive[x+3])/2),liste_definitive[3]):
+                    if liste_definitive[x+2]<=liste_definitive[i]:
+                        cx=cx
+                    else:
+                        cx=cx+1
+                if not dans(liste_definitive[i],((liste_definitive[x]+liste_definitive[x+2])/2),liste_definitive[2]):
+                    if liste_definitive[x+3]<=liste_definitive[i+1]:
+                        cy=cy
+                    else:
+                        cy=cy+1
             if x==i: # Si les deux pièces sont en fait la même, un traitement est inutile
                 True
         if not c:
             liste_definitive[i+2]=liste_definitive[2]
             liste_definitive[i+3]=liste_definitive[3]
+        if not cy:
+            liste_definitive[i+3]=liste_definitive[3]
+        if not cx:
+            liste_definitive[i+2]=liste_definitive[2]
+            
+        
+            
+
 
 
 ################################
