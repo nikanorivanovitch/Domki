@@ -12,7 +12,7 @@ from tkinter import *
 def pieces():
     i = 0 # i sera ici le nombre de pièces créées
     aire_totale=longueur*largeur # aire_totale sera ici le nombre de mètres carrés restant
-    while i != nb_pieces-1:
+    while i != nb_pieces:
         x = random.randint(int(largeur/5),int(largeur/2)) # ici on définit la largeur de la pièce (largeur sur le plan)
         y = random.randint(int(longueur/5),int(longueur/2)) # et ici on définit la hauteur de la pièce (hauteur sur le plan)
         aire = x*y
@@ -205,6 +205,10 @@ def jonction():
 fenetre = Tk()
 fenetre.title('Architecktor 2000: maison sur mesure')
 
+longueur_ = IntVar()
+largeur_ = IntVar()
+nb_pieces_ = IntVar()
+
 #Phrase de présentation
 en_tete = Label(fenetre)
 en_tete.grid(column= 0, row= 0, columnspan=2, sticky='s', ipady=20)
@@ -212,13 +216,11 @@ en_tete.grid(column= 0, row= 0, columnspan=2, sticky='s', ipady=20)
 texte_terrain = Label(fenetre, text="Veuillez nous donner les dimensions de votre maison (en mètres):", foreground='#f08080' ,font=('Trebuchet','13','bold'))
 texte_terrain.grid(column= 0, row= 1, columnspan=2)
 #Première zone de saisie: Longueur
-longueur_ = IntVar()
 longueur = Label(fenetre, text='Longueur de votre maison :',foreground='#f08080' ,font='Trebuchet')
 longueur.grid(column= 0, row= 2, sticky='e')
 choix_longueur = Spinbox(fenetre, textvariable=longueur_, from_=8, to=35)
 choix_longueur.grid(column=1, row=2, sticky='w')
-#Première zone de saisie: Largeur
-largeur_ = IntVar()
+#Deuxième zone de saisie: Largeur
 largeur = Label(fenetre, text='Largeur de votre maison :',foreground='#f08080' ,font='Trebuchet')
 largeur.grid(column= 0, row= 3, sticky='e')
 choix_largeur = Spinbox(fenetre, textvariable=largeur_, from_=8, to=35)
@@ -226,7 +228,6 @@ choix_largeur.grid(column=1, row=3, sticky='w')
 
 
 #Entrer le nombre de pièces
-nb_pieces_ = IntVar()
 texte_terrain = Label(fenetre, text="Veuillez nous donner le nombre de pièces :", foreground='#f08080' ,font=('Trebuchet','13','bold'))
 texte_terrain.grid(column= 0, row= 4, sticky='se')
 choix_nb_pieces = Spinbox(fenetre, textvariable=nb_pieces_, from_=3, to=20)
