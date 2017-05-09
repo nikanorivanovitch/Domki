@@ -153,7 +153,8 @@ def couloir():
 def dessin():
     x=0
     for i in range(0,len(liste_definitive),4):
-        canvas.create_rectangle(10+liste_definitive[i],10+liste_definitive[i+1],10+liste_definitive[i+2],10+liste_definitive[i+3],fill=color[x])
+        canvas.create_rectangle(10+liste_definitive[i],10+liste_definitive[i+1],10+liste_definitive[i+2],10+liste_definitive[i+3], fill=color[x])
+        canvas.create_text(10+int((liste_definitive[i+2]+liste_definitive[i])/2),10+int((liste_definitive[i+1]+liste_definitive[i+3])/2), text=nom[x])
         x=x+1 # On change l'indice de la couleur
         # On ajoute 10 à chaques dimensions pour qu'on puisse apercevoir une marge autour de la maison, le fill=color[x] permet de colorier la pièce
         # à l'aide d'une couleur déjà définie par la fonction couleur() et stockée dans la liste color
@@ -283,6 +284,7 @@ liste_bazar=[]
 liste_rangée=[]
 liste_definitive=[]
 color=[]
+nom=["","salon","cuisine","salle de bain","chambre","chambre","chambre","chambre","chambre","chambre","chambre"]
 
 liste_definitive.extend([0,0,largeur, longueur])
 
