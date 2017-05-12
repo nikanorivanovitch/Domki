@@ -5,28 +5,24 @@ from tkinter import *
 # Fonction de découpage des pièces #
 ####################################
 
-#Création d'un première liste contenant un nombre de pièces aléatoire
-#Chaque pièce est définie par deux entiers (x,y) qui sont les coordonnées
-#Les coordonnées sont misent en "bazar", elles ne sont pas oraganisées
-
 def pieces():
-    i = 0 # i sera ici le nombre de pièces créées
-    aire_totale=longueur*largeur # aire_totale sera ici le nombre de mètres carrés restant
-    while i != nb_pieces:
-        x = random.randint(int(largeur/5),int(largeur/2)) # ici on définit la largeur de la pièce (largeur sur le plan)
-        y = random.randint(int(longueur/5),int(longueur/2)) # et ici on définit la hauteur de la pièce (hauteur sur le plan)
-        aire = x*y
-        # Et ensuite on lui fait passer des "tests" pour savoir si la pièce est bien découpée
-        if aire_totale - aire <= largeur*longueur/25 : # S'il reste moins de 25% de l'aire totale de libre en comptant l'ajout de cette pièce
-            print("$: Nous avons créé seulement {} pièces car il n'y a pas assez de place".format(i)) # Alors on affiche un message d'erreur
-            break # Et on arrête la boucle
-        if 2 >= x-y >=-2 and aire_totale - aire >= 0 : # Si la différence entre la largeur et la hauteur de la pièce n'excède pas 2
-            aire_totale = aire_totale - aire # Alors on met à jour le nombre de mètre carrés restant
+    i = 0 # i est le nombre de pièces créées
+    aire_totale=longueur*largeur # aire_totale est l'aire de l'espace attribué pour la maison
+    while i != nb_pieces: # tant que le nombre de pièces crées est différents du nombre de pièces que l'utilisateur souhaite
+        x = random.randint(int(largeur/5),int(largeur/2)) # on définit la largeur d'une pièce (largeur sur le plan et en mètres)
+        y = random.randint(int(longueur/5),int(longueur/2)) # et on définit la hauteur d'une pièce (hauteur sur le plan et en mètres)
+        aire = x*y # on calcul l'aire de cette pièce 
+        # Et ensuite on lui fait passer des "tests" pour savoir si la pièce est "conforme" à la crétaion d'un plan
+        if aire_totale - aire <= largeur*longueur/25 : # si il reste moins de 25% de l'aire totale en comptant l'ajout de cette pièce
+            print("$: Nous avons créé seulement {} pièces car il n'y a pas assez de place".format(i)) # alors nous n'avons plus de place et on affiche un message d'erreur
+            break # et on arrête la boucle
+        if 2 >= x-y >=-2 : # si la différence entre la largeur et la hauteur de la pièce n'excède pas 2
+            aire_totale = aire_totale - aire # alors on met à jour le nombre de mètre carrés restant
             i = i+1 # On ajoute 1 au nombre de pièces créées
             liste_bazar.append(x) # et on ajoute les dimensions de la pièce à la liste
             liste_bazar.append(y)
-    print("$: Pièces définies :{}".format(i)) # On affiche le nombre de pièces créées
-    print(liste_bazar) # On affiche les dimensions des pièces 
+    print("$: Pièces définies :{}".format(i)) # on affiche le nombre de pièces créées
+    print(liste_bazar) # on affiche les dimensions des pièces contenu dans la liste (permet de voir si le programme est conforme aux attentes)
 
 
 ################################################
